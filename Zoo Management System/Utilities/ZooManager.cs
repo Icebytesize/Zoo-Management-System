@@ -118,6 +118,7 @@ namespace Zoo_Management_System.Utilities
                 "Se kort over Zoo",
                 "Tilføj nyt bur til Zoo",
                 "Tilføj nyt dyr til Zoo",
+                "Tilføj dyr til bur",
                 "Liste over alle bur i Zoo",
                 "Liste over alle Dyr i Zoo",
             };
