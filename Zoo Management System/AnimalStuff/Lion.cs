@@ -16,18 +16,22 @@ namespace Zoo_Management_System.AnimalStuff
         Female,
         Unknown
     }
-    internal class Lion : Animal
+    internal class Lion : Animal 
     {
         
         public Gender Gender { get; set; }
 
         public Lion()
         {
+            Food = "råt kød";
             SoundString = "Roar!!!\n";
             Species = "Lion"; // Kan ikke komme på andre løve "racer", så den er fast sat
             InitSound();
            
         }
+        // Nedarvning (Initiueret med (Lion : Animal) oppe i toppen), gør at Lion arver egenskaber og metoder fra Animal
+        // hvilket er grunden til den eneste property der er sat i lion er Gender. Alt andet i Animal
+
         public Lion(string name, DateTime birthDate, Gender gender) : this()
         {
             Name = name;
@@ -37,23 +41,11 @@ namespace Zoo_Management_System.AnimalStuff
             
         }
         
-        //public override void MakeSound()
-        //{
-            
-        //    base.MakeSound();
-           
-        //}
+        //Har slettet MakeSound(), Sleep() og Eat() metoderne fordi de er skrevet ned i Animals
 
-        public override void Eat()
-        {
-            base.Eat();
-        }
 
-        public override void Sleep()
-        {
-           base.Sleep();
-        }
 
+        
         public override void ShowAnimal()
         {
 

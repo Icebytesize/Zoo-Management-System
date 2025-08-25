@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zoo_Management_System.AnimalStuff;
+using Zoo_Management_System.ZooStuff;
+using Zoo_Management_System.Utilities;
+using System.IO;
 
 namespace Zoo_Management_System
 {
@@ -11,18 +14,16 @@ namespace Zoo_Management_System
     {
         static void Main(string[] args)
         {
-            /* Beskriv på disse linjer hvad opgaven er og måske beskriv begreb
-             * 
-             * 
-             * 
-             */
+            /* Denne opgave er den afsluttende opgave for OOP1 på H1 TEC Ballerup
+               Der skal står mere om Inkapsulering i Animal
+               Der skal mere om nedarvning i Lion
+               Der står en del mere om abstraktion i Animal */
 
-            Lion lion1 = new Lion("Brian", new DateTime(1993, 9, 16), Gender.Male);
-            //lion1.Name = "Brian";
-            
-            lion1.MakeSound();
-            lion1.ShowAnimal();
-            Console.ReadKey();
+           
+            ZooManager.ZooValg();
+
+
+
 
         }
     }

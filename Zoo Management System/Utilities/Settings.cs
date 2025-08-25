@@ -16,6 +16,10 @@ namespace Zoo_Management_System.Utilities
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AnimalStuff", fileName);
         }
-        
+        public static string GetFilePath(string fileName)
+        {
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ZooData", fileName);
+        }
+
     }
 }
