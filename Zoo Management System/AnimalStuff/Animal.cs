@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
+using Zoo_Management_System.Utilities;
+using System.IO;
 
 namespace Zoo_Management_System
 {
@@ -15,19 +18,41 @@ namespace Zoo_Management_System
     }
     internal abstract class Animal
     {
-        internal string _soundPath;
 
         public string Name { get; set; }
         public string Species { get; set; }
         public DateTime BirthDate { get; set; }
         public string Food { get; set; } //Hvad dyret spiser
         public SleepState SleepState { get; set; }
+        public string SoundString { get; set; }
 
         private int age;
-
+        internal string soundPath;
+        internal SoundPlayer animalSound;
+        protected void InitSound()
+        {
+            if (!string.IsNullOrEmpty(Species))
+            {
+                soundPath = Settings.GetSoundPath($"{Species}.wav");
+                if (File.Exists(soundPath))
+                {
+                    animalSound = new SoundPlayer(soundPath);
+                }
+                else
+                {
+                    Console.WriteLine($"Advarsel: Lydfil ikke fundet: {soundPath}");
+                }
+            }
+        }
         public virtual void MakeSound()
         {
+            if (SleepState == SleepState.Awake)
+            {
+                Console.WriteLine(SoundString);
+                animalSound.Play();
+            }
 
+            
         }
 
         public virtual void Eat()

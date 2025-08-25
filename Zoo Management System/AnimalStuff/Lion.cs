@@ -18,34 +18,31 @@ namespace Zoo_Management_System.AnimalStuff
     }
     internal class Lion : Animal
     {
-        private readonly SoundPlayer _lionSound;
         
         public Gender Gender { get; set; }
 
         public Lion()
         {
+            SoundString = "Roar!!!\n";
             Species = "Lion"; // Kan ikke komme på andre løve "racer", så den er fast sat
-            _soundPath = Settings.GetSoundPath("Lion.wav");
-            _lionSound = new SoundPlayer(_soundPath);
+            InitSound();
+           
         }
         public Lion(string name, DateTime birthDate, Gender gender) : this()
         {
             Name = name;
-            //Species = "Lion"; // Kan ikke komme på andre løve "racer", så den er fast sat
             BirthDate = birthDate;
             Gender = gender;
             GetAge();
-            //_soundPath = Settings.GetSoundPath("Lion.wav");
-            //_lionSound = new SoundPlayer(_soundPath);
+            
         }
         
-        public override void MakeSound()
-        {
-            Console.Write("Roar!!!\n\n");
-            if(File.Exists(_soundPath)) _lionSound.Play();
-
+        //public override void MakeSound()
+        //{
+            
+        //    base.MakeSound();
            
-        }
+        //}
 
         public override void Eat()
         {
