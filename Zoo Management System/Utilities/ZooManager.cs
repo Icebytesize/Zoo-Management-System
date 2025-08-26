@@ -50,7 +50,8 @@ namespace Zoo_Management_System.Utilities
 
         public static List<Enclosure> LoadEnclosures()
         {
-            string enclosureFile = Settings.GetFilePath($"{zoos[ValgtZoo].Name}_enclosure.txt");
+            string safeName = zoos[ValgtZoo].Name.Replace(" ", "_");
+            string enclosureFile = Settings.GetFilePath($"{safeName}_enclosure.txt");
 
             if (!File.Exists(enclosureFile))
             {
@@ -134,7 +135,9 @@ namespace Zoo_Management_System.Utilities
 
                 if (input > 0 && input <= ValgtZooMenuMuligheder.Count)
                 {
-                   // = input - 1;
+                    Messages.ShowZooMap(enclosures);     
+                    Console.ReadKey();
+                    // = input - 1;
                     
                 }
                 else if (input == 999)

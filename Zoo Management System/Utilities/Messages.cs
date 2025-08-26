@@ -70,6 +70,63 @@ namespace Zoo_Management_System.Utilities
 
         }
 
+        public static void ShowZooMap(List<Enclosure> listeOverBure)
+        {
+            //if (listeOverBure.Count == 0) Console.WriteLine("Intet at tegne kort over");
+            //else
+            //{
+            //    int størsteBur = listeOverBure.Max(item => item.Size / 10) + 2;
+            //    int zooSegmentDimension = Math.Max(størsteBur+6, 11);
+            //    int totalWidt = zooSegmentDimension * 2 + 5;
+
+            //    Console.WriteLine(new string(' ', zooSegmentDimension - 1) + " Zoo " + new string(' ', zooSegmentDimension -1));
+            //    Console.WriteLine(new string(' ', zooSegmentDimension) + "║ - ║" + new string(' ', zooSegmentDimension));
+
+            //}
+
+            if (listeOverBure.Count == 0)
+            {
+                Console.WriteLine("Intet at tegne kort over");
+                return;
+            }
+
+            int maxDimension = listeOverBure.Max(bur => bur.Size / 10) + 2;
+
+            for (int i = 0; i < listeOverBure.Count; i += 2)
+            {
+                Enclosure cage1 = listeOverBure[i];
+                Enclosure cage2 = (i + 1 < listeOverBure.Count) ? listeOverBure[i + 1] : null;
+
+                for (int line = 0; line < maxDimension; line++)
+                {
+                    string line1 = DrawCageLine(cage1, maxDimension, line);
+                    string line2 = cage2 != null ? DrawCageLine(cage2, maxDimension, line) : new string(' ', maxDimension);
+
+                    string road = (line == maxDimension / 2) ? " │ - │ " : "       ";
+
+                    Console.WriteLine(line1 + road + line2);
+                }
+            }
+        }
+        private static string DrawCageLine(Enclosure cage, int segmentSize, int line)
+        {
+            int cageSize = cage.Size / 10 + 2;
+            int padTop = (segmentSize - cageSize) / 2;
+            int padLeft = (segmentSize - cageSize) / 2;
+
+            if (line < padTop || line >= padTop + cageSize)
+                return new string(' ', segmentSize); // Tom linje udenfor bur-området
+
+            int cageLine = line - padTop;
+            string content;
+
+            if (cageLine == 0) content = "╔" + new string('═', cageSize - 2) + "╗";
+            else if (cageLine == cageSize - 1) content = "╚" + new string('═', cageSize - 2) + "╝";
+            else content = "║" + new string(' ', cageSize - 2) + "║";
+
+            return new string(' ', padLeft) + content + new string(' ', segmentSize - cageSize - padLeft);
+        }
+
         public static void InputSvar<T>(List<T> liste, string print)
         {
             Console.SetCursorPosition(1, liste.Count + 9);
