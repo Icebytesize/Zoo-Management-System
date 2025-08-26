@@ -11,6 +11,15 @@ namespace Zoo_Management_System.Utilities
 {
     internal static class ZooManager
     {
+        public static List<string> ValgtZooMenuMuligheder = new List<string>
+        {
+            "Se kort over Zoo",
+            "Tilføj nyt bur til Zoo",
+            "Tilføj nyt dyr til Zoo",
+            "Tilføj dyr til bur",
+            "Liste over alle bur i Zoo",
+            "Liste over alle Dyr i Zoo",
+        };
         public static List<Zoo> zoos = new List<Zoo>();
         public static List<Enclosure> enclosures = new List<Enclosure>();
         public static int ValgtZoo;
@@ -20,6 +29,7 @@ namespace Zoo_Management_System.Utilities
         {
             zoos = LoadZoos();
         }
+
         public static void EnclosureSet()
         {
             enclosures = LoadEnclosures();
@@ -114,15 +124,6 @@ namespace Zoo_Management_System.Utilities
         public static void VisValgtZoo()
         {
             EnclosureSet();
-            List<string> ValgtZooMenuMuligheder = new List<string>
-            {
-                "Se kort over Zoo",
-                "Tilføj nyt bur til Zoo",
-                "Tilføj nyt dyr til Zoo",
-                "Tilføj dyr til bur",
-                "Liste over alle bur i Zoo",
-                "Liste over alle Dyr i Zoo",
-            };
 
             bool zooMenu = true;
 
@@ -133,9 +134,11 @@ namespace Zoo_Management_System.Utilities
                 Messages.VælgMenu(ValgtZooMenuMuligheder, z => z, $"Velkommen i {zoos[ValgtZoo].Name}");
                 int.TryParse(Console.ReadLine(), out input);
 
+                
                 if (input > 0 && input <= ValgtZooMenuMuligheder.Count)
                 {
-                    Messages.ShowZooMap(enclosures);     
+                    Console.Clear();
+                    Messages.ShowZooMap(enclosures, zoos[ValgtZoo].Name);     
                     Console.ReadKey();
                     // = input - 1;
                     

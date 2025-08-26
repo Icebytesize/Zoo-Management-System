@@ -75,7 +75,12 @@
     <Content Include="AnimalStuff\Penguin.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ZooData\Københavns_Zoo_enclosure.txt" />
+    <Content Include="ZooData\Københavns_Zoo_enclosure.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZooData\Nalles_Zoo_enclosure.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ZooData\zoos.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

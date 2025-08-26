@@ -70,43 +70,58 @@ namespace Zoo_Management_System.Utilities
 
         }
 
-        public static void ShowZooMap(List<Enclosure> listeOverBure)
+        public static void ShowZooMap(List<Enclosure> listeOverBure, string zooNavn)
         {
-            //if (listeOverBure.Count == 0) Console.WriteLine("Intet at tegne kort over");
-            //else
-            //{
-            //    int størsteBur = listeOverBure.Max(item => item.Size / 10) + 2;
-            //    int zooSegmentDimension = Math.Max(størsteBur+6, 11);
-            //    int totalWidt = zooSegmentDimension * 2 + 5;
-
-            //    Console.WriteLine(new string(' ', zooSegmentDimension - 1) + " Zoo " + new string(' ', zooSegmentDimension -1));
-            //    Console.WriteLine(new string(' ', zooSegmentDimension) + "║ - ║" + new string(' ', zooSegmentDimension));
-
-            //}
+           
 
             if (listeOverBure.Count == 0)
             {
-                Console.WriteLine("Intet at tegne kort over");
+                InputSvar(ZooManager.ValgtZooMenuMuligheder, "Intet at tegne kort over");
                 return;
             }
 
             int maxDimension = listeOverBure.Max(bur => bur.Size / 10) + 2;
+            int cageRows = (int)Math.Ceiling(listeOverBure.Count / 2.0);
 
-            for (int i = 0; i < listeOverBure.Count; i += 2)
+
+            int innerWidth = maxDimension * 2 + 9;
+            string title = $" Kort over {zooNavn} ";
+            int titlePadding = Math.Max(0, innerWidth - title.Length);
+            int leftPad = titlePadding / 2;
+            int rightPad = titlePadding - leftPad;
+
+            
+
+            Console.WriteLine("╔" + new string('═', innerWidth) + "╗");
+            Console.WriteLine("║" + new string(' ', leftPad) + title + new string(' ', rightPad) + "║");
+            Console.WriteLine("║" + new string(' ', innerWidth) + "║");
+
+
+            for (int row = 0; row < cageRows; row++)
             {
-                Enclosure cage1 = listeOverBure[i];
-                Enclosure cage2 = (i + 1 < listeOverBure.Count) ? listeOverBure[i + 1] : null;
+                Enclosure cage1 = listeOverBure[row * 2];
+                Enclosure cage2 = (row * 2 + 1 < listeOverBure.Count) ? listeOverBure[row * 2 + 1] : null;
 
                 for (int line = 0; line < maxDimension; line++)
                 {
                     string line1 = DrawCageLine(cage1, maxDimension, line);
                     string line2 = cage2 != null ? DrawCageLine(cage2, maxDimension, line) : new string(' ', maxDimension);
 
-                    string road = (line == maxDimension / 2) ? " │ - │ " : "       ";
+                    string verticalRoad = " │   │ "; // lodret vej mellem burene
 
-                    Console.WriteLine(line1 + road + line2);
+                    Console.WriteLine("║ " + line1 + verticalRoad + line2 + " ║");
+                }
+
+                // vandret vej under bure (kun hvis ikke sidste række)
+                if (row < cageRows - 1)
+                {
+                    Console.WriteLine("║ " + new string('─', maxDimension) + "─┘   └" + new string('─', maxDimension) + "  ║");
+                    Console.WriteLine("║" + new string(' ', innerWidth) + "║");
+                    Console.WriteLine("║ " + new string('─', maxDimension) + "─┐   ┌" + new string('─', maxDimension) + "  ║");
                 }
             }
+
+            Console.WriteLine("╚" + new string('═', innerWidth) + "╝");
         }
         private static string DrawCageLine(Enclosure cage, int segmentSize, int line)
         {
@@ -115,7 +130,7 @@ namespace Zoo_Management_System.Utilities
             int padLeft = (segmentSize - cageSize) / 2;
 
             if (line < padTop || line >= padTop + cageSize)
-                return new string(' ', segmentSize); // Tom linje udenfor bur-området
+                return new string(' ', segmentSize);
 
             int cageLine = line - padTop;
             string content;
