@@ -19,7 +19,6 @@ namespace Zoo_Management_System.Utilities
             "Tilføj nyt bur til Zoo",
             "Tilføj nyt dyr til Zoo",
             "Tilføj dyr til bur",
-            "Fjern dur fra bur",
             "Liste over alle bur i Zoo",
             "Liste over alle dyr i Zoo",
         };
@@ -254,18 +253,13 @@ namespace Zoo_Management_System.Utilities
                     zoo.AssignAnimalToEnclosure();
 
                 }
+                
                 else if (input == 5)
-                {
-                    Console.Clear();
-                    //Enclosure.RemoveAnimalFromEnclosure(Animal animal);
-
-                }
-                else if (input == 6)
                 {
                     Console.Clear();
                     //something.something.showAllCageinZoo;
                 }
-                else if (input == 7)
+                else if (input == 6)
                 {
                     Console.Clear();
                     zoos[ValgtZoo].AllAnimalsInZoo.ForEach(x => Console.WriteLine($"Id: {x.Id}  Art: {x.Species}   Navn: {x.Name}   Alder: {x.GetAge()} År   Født den: {x.BirthDate:dd-MM-yyyy}"));
@@ -291,6 +285,7 @@ namespace Zoo_Management_System.Utilities
             bool enclosureMenu = true;
             Zoo zoo = zoos[ValgtZoo];
             Enclosure enclosure = zoo.ListOfEnclosures[ValgtEnclosure];
+            enclosure.ParentZoo = zoo;
 
             while (enclosureMenu)
             {
@@ -319,7 +314,11 @@ namespace Zoo_Management_System.Utilities
                         }
                     }
                 }
-                else if (input == 2) ;
+                else if (input == 2)
+                {
+                    enclosure.RemoveAnimalFromEnclosure();
+                }
+
                 else if (input == 999)
                 {
                     Messages.InputSvar(ValgtEnclosureMenuMuligheder, "Tilbage til kort");

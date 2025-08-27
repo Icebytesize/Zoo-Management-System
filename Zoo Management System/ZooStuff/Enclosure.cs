@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zoo_Management_System.PersonStuff;
+using Zoo_Management_System.Utilities;
 
 namespace Zoo_Management_System.ZooStuff
 {
@@ -17,6 +18,7 @@ namespace Zoo_Management_System.ZooStuff
         public List<Person> VisitorsLookingAtEnclosure { get; set; }
         public List<Person> ZookeepersWorkingAtEnclosure { get; set; }
 
+        public Zoo ParentZoo { get; set; }
 
         public Enclosure()
         {
@@ -37,9 +39,47 @@ namespace Zoo_Management_System.ZooStuff
             AnimalsInEnclosure.Add(animal);
         }
 
-        public void RemoveAnimalFromEnclosure(Animal animal) 
+        public void RemoveAnimalFromEnclosure() 
         {
-            AnimalsInEnclosure.Remove(animal);
+            Animal valgtDyr = null;
+            int input = 0;
+            if (AnimalsInEnclosure.Count == 0)
+            {
+                Messages.InputSvar(ZooManager.ValgtEnclosureMenuMuligheder, "Inden dyr i bur");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.Clear();
+                Messages.VælgMenu(AnimalsInEnclosure, a => $"{a.Species}: {a.Name}", "Vælg hvilket dyr du vil fjerne fra buret");
+                if (int.TryParse(Console.ReadLine(), out input)) { valgtDyr = AnimalsInEnclosure[input - 1]; }
+
+
+                if (input > 0 && input <= AnimalsInEnclosure.Count)
+                {
+                    Console.Clear();
+                    Console.Write($"Ønsker du at fjerne {valgtDyr.Species}: {valgtDyr.Name} fra buret {Name}?\n1: Fjern\n2: Annuler\n\n> ");
+                    if (int.TryParse(Console.ReadLine(), out input)) { }
+                    if (input == 1)
+                    {
+                        AnimalsInEnclosure.Remove(valgtDyr);
+                        ParentZoo.AnimalsNotAssigned.Add(valgtDyr);
+                        string safeName = ParentZoo.Name.Replace(" ", "_");
+                        string animalsNotInEnclosureFile = Settings.GetFilePath($"{safeName}_AnimalsNotAssigned.txt");
+                        string animalsInEnclosureFile = Settings.GetFilePath($"{safeName}_enclosure_{Id}.txt");
+                        ParentZoo.SaveListToFile(ParentZoo.AnimalsNotAssigned, animalsNotInEnclosureFile, a => $"{a.Species};{a.Id};{a.Name};{a.BirthDate:dd-MM-yyyy}");
+                        ParentZoo.SaveListToFile(AnimalsInEnclosure, animalsInEnclosureFile, a => $"{a.Species};{a.Id};{a.Name};{a.BirthDate:dd-MM-yyyy}");
+
+                        Console.Clear();
+                        Console.WriteLine($"{valgtDyr.Name} fjernet fra {Name}");
+                        Console.ReadKey();
+
+                    }
+                    
+
+
+                }
+            }
         }
 
         public void ListAnimals()

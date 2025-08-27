@@ -141,10 +141,10 @@ namespace Zoo_Management_System.ZooStuff
             }
         }
 
-        public void RemoveAnimalFromEnclosure()
-        {
+        //public void RemoveAnimalFromEnclosure()
+        //{
             
-        }
+        //}
 
         public void AssignAnimalToEnclosure()
         {
