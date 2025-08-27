@@ -1,0 +1,4 @@
+Elephant;1;Emil;05-02-2014
+Penguin;2;Penny;19-09-1993
+Giraffe;3;Geo;02-02-1993
+Lion;4;Leon;08-12-2002
