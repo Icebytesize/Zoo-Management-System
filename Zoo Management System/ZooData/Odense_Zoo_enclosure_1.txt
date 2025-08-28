@@ -1,0 +1,2 @@
+Elephant;1;Emil;05-02-2014
+Giraffe;3;Geo;02-02-1993

@@ -9,7 +9,7 @@ namespace Zoo_Management_System.AnimalStuff
 {
     internal class Elephant : Animal
     {
-        public Elephant()
+        public Elephant() 
         {
             Food = "rødder og frugter";
             SoundString = "Trut trut\n";

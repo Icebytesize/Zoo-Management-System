@@ -1,0 +1,4 @@
+1;Savanne1;50
+2;Savanne2;60
+3;Savanne3;10
+4;Savanne4;30

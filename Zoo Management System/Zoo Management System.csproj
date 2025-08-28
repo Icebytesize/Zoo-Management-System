@@ -75,7 +75,15 @@
     <Content Include="AnimalStuff\Penguin.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ZooData\Københavns Zoo_enclosure.txt" />
+    <Content Include="ZooData\Odense_Zoo_AllAnimalsInZoo.txt" />
+    <Content Include="ZooData\Odense_Zoo_AnimalsNotAssigned.txt" />
+    <Content Include="ZooData\Odense_Zoo_enclosures.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZooData\Nalles_Zoo_enclosures.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZooData\Odense_Zoo_enclosure_1.txt" />
     <Content Include="ZooData\zoos.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

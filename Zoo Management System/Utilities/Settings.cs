@@ -14,12 +14,14 @@ namespace Zoo_Management_System.Utilities
 
         public static string GetSoundPath(string fileName)
         {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AnimalStuff", fileName);
+            return Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "AnimalStuff", fileName);
         }
         public static string GetFilePath(string fileName)
         {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ZooData", fileName);
+            //return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ZooData", fileName);
+            return Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "ZooData", fileName);
         }
+
 
     }
 }

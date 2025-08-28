@@ -19,7 +19,13 @@ namespace Zoo_Management_System
                Der skal mere om nedarvning i Lion
                Der står en del mere om abstraktion i Animal */
 
-           
+
+            int width = Console.LargestWindowWidth;
+            int height = Console.LargestWindowHeight;
+
+            Console.SetWindowSize(width, height);
+            Console.SetBufferSize(width, height);
+
             ZooManager.ZooValg();
 
 

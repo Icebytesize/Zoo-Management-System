@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zoo_Management_System.Utilities;
 using System.IO;
+using System.ComponentModel;
 
 namespace Zoo_Management_System
 {
@@ -40,7 +41,7 @@ namespace Zoo_Management_System
 
         // Polymorfi: De klasser der arver fra Animal, overskrive metode ShowAnimal(). der er polymorfi, at metoder opføre sig forskelligt. alt udfra hvilken klasse der kalder dem
         private static int _nextId = 1;       
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Species { get; set; }
         public DateTime BirthDate { get; set; }
@@ -53,9 +54,10 @@ namespace Zoo_Management_System
         internal string soundPath;
         internal SoundPlayer animalSound;
 
+      
         protected Animal() 
-        { 
-            Id = _nextId++;
+        {
+            
         }
 
         /// <summary>
@@ -151,6 +153,7 @@ namespace Zoo_Management_System
                 GetAge();
                 Console.WriteLine($"Alder: {age}");
             }
+            MakeSound();
 
         }
 
