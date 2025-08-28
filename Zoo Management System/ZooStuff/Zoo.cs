@@ -108,7 +108,12 @@ namespace Zoo_Management_System.ZooStuff
         {
             for (int i = 0; i < ListOfEnclosures.Count; i++)
             {
-                //Console.WriteLine($"{i+1}: ")
+                Console.WriteLine($"Bur {i + 1} ud af {ListOfEnclosures.Count}\n{ListOfEnclosures[i].Name}: ");
+
+                for (int j = 0; j < ListOfEnclosures[i].AnimalsInEnclosure.Count; j++)
+                {
+                    
+                }
             }
         }
 
@@ -134,7 +139,22 @@ namespace Zoo_Management_System.ZooStuff
                 $"1: Opret\n" +
                 $"2: Annuler\n\n" +
                 $"> ");
-            int.TryParse (Console.ReadLine(), out int input);
+
+            int input;
+            try
+            {
+                input = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (NotFiniteNumberException e)
+            {
+                Console.WriteLine(e);
+                input = 0;
+            }
+            catch (Exception e)
+            {
+                input = 0;
+            }
+
             if (input == 1)
             {
                 ListOfEnclosures.Add(enclosure);
