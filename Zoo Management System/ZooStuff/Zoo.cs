@@ -104,6 +104,14 @@ namespace Zoo_Management_System.ZooStuff
             }
         }
 
+        public void ShowAllEnclosures()
+        {
+            for (int i = 0; i < ListOfEnclosures.Count; i++)
+            {
+                //Console.WriteLine($"{i+1}: ")
+            }
+        }
+
         public void AddEnclosure(Enclosure enclosure)
         {
            
